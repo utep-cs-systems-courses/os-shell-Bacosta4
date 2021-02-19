@@ -1,4 +1,5 @@
 import os,sys,time,re
+from readline import readLine
 
 pid = os.getpid()
 
@@ -7,12 +8,12 @@ while (input != "exit"):
         os.write(1, os.environ['PS1'].encode())
     else:
         os.write(1, ("$ ").encode())
+        input = readLine()
 
-        input = os.read(0,1000).decode()
 
-        if("exit" in input):
+        if(input == "exit"):
             os.write(1,("GoodBye User!\n").encode())
-            sys.exit(0)
+            sys.exit(1)
 
             rc = os.fork()
 
